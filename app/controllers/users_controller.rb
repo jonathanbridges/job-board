@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def new
     @user = User.new
@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      redirect_to openings_url
+      if @user.is_employer
+        redirect_to new_company_url
+      else
+        redirect_to openings_url
+      end
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

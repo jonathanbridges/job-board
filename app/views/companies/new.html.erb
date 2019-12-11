@@ -1,0 +1,11 @@
+<h2>Select Your Company</h2>
+
+<form action="<%= companies_url %>" method="post">
+  <%= auth_token_input %>
+
+    <label>Company Name
+        <input type="text" name="company[company_name]" value="">
+    </label>
+
+    <input type="submit" value="Submit">
+</form>
