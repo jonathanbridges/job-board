@@ -1,0 +1,26 @@
+<h1>Sign Up</h1>
+
+<form action="<%= users_url %>" method="post">
+  <%= auth_token_input %>
+
+    <label>Email
+      <input type="text" name="user[email]" value="">
+    </label>
+
+    <label>Name
+      <input type="text" name="user[name]" value="">
+    </label>
+
+    <label>Password
+      <input type="text" name="user[password]" value="">
+    </label>
+
+    <label>Account Type
+      Employer
+      <input type="radio" name="user[is_employer]" value="true">
+      Applicant
+      <input type="radio" name="user[is_employer]" value="false">
+    </label>
+
+    <input type="submit" value="Sign Up">
+</form>
