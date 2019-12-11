@@ -1,0 +1,18 @@
+<h2>Openings</h2>
+
+<ul>
+  <% @openings.each do |opening|%>
+    <li>
+      Title: <%= opening.title%>
+      <br>
+      Description: <%= opening.description%>
+      <%# TO DO: conditional button to apply if current user has not already applied 
+      and is not an employer %>
+
+    </li>
+  <% end %>
+</ul>
+
+<% if current_user.is_employer %>
+  <a href="<%= new_opening_url %>">Create New Opening</a>
+<% end %>
