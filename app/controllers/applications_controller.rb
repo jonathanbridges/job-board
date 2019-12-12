@@ -10,8 +10,10 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def index
-    @applications = Application.all
+  def index 
+    @company_id = current_user.company_id
+    # only return applications for the current user's company
+    @applications = Application.includes(:company).where(companies: {id: @company_id})
     render :index
   end
 
