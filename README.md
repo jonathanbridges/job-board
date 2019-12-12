@@ -39,7 +39,8 @@ $ navigate to http://localhost:3000/#/
 * New employer accounts can create a new company or join an existing company.
 * Employers can see an index of job openings for their company.
 * Employers can create new job openings for their company.
-* Employers can see applicants who have applied for their openings by name.
+* Employers can update existing job openings for their company.
+* Employers can see applicants who have applied for openings by name.
 
 ## Applicant Features
 * Applicants can apply to openings from any company.
