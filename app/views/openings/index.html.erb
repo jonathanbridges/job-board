@@ -1,9 +1,10 @@
 <% if current_user.is_employer %>
+  <% company = Company.find(current_user.company_id) %>
   <a href="<%= applications_url %>">View Applicants</a>
   <br>
   <a href="<%= new_opening_url %>">Create New Opening</a>
   <br>
-  <h2>Your company's Openings</h2>
+  <h2><%= company.company_name %>'s Openings</h2>
 <% else %>
   <h2>Current Job Openings</h2>
 <% end %>
@@ -13,14 +14,14 @@
     <li>
       <% if !current_user.is_employer %>
         <% company = Company.find(opening.company_id) %>
-        Company Name: <%= company.company_name %>
+        <b>Company Name:</b> <%= company.company_name %>
         <br>
       <% end %>
 
-      Title: <%= opening.title%>
+      <b>Title:</b> <%= opening.title%>
       <br>
 
-      Description: <%= opening.description%>
+      <b>Description:</b> <%= opening.description%>
 
       <% if !current_user.is_employer %>
         <form action="<%= applications_url %>" method="post">

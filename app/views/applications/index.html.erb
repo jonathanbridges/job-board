@@ -1,14 +1,27 @@
+<a href="<%= openings_url %>">Return to Openings</a>
+
 <h2>Current Applicants</h2>
 
+<% # Initialize a new Hash where Keys are Job Titles and Values are an Array of Applicants %>
+<% applicants = Hash.new { |hash,key| hash[key] = Array.new } %>
+<% @applications.each do |application| %>
+  <% job_listing = Opening.find(application.opening_id).title %>
+  <% applicant = User.find(application.applicant_id) %>
+  <% if !applicants.has_key?(job_listing) %>
+    <% applicants[job_listing] = applicants[job_listing].push(applicant.name) %>
+  <% else %>
+    <% applicants[job_listing].push(applicant.name) %>
+  <% end %>
+<% end %>
+
 <ul>
-  <% @applications.each do |application| %>
-    <li>
-      <% job_listing = Opening.find(application.opening_id) %>
-      Job Title: <%= job_listing.title %>
-      <br>
-      <% applicant = User.find(application.applicant_id) %>
-      Applicant Name: <%= applicant.name %>
-      <br>
+  <% applicants.each do | listing, applicants | %>
+    <li><b>Job Title:</b> <%= listing %>
+    <% while applicants.length > 0 %>
+      <ul>
+        <li><%= applicants.pop() %></li>
+      </ul>
+    <% end %>
     </li>
     <br>
   <% end %>
