@@ -1,0 +1,20 @@
+<h2>Current Applicants</h2>
+
+<% current_company = Company.find(current_user.company_id) %>
+
+<ul>
+  <% @applications.each do |application| %>
+    <% if application.company.id == current_company.id %>
+      <li>
+        Company: <%= application.company.company_name %>
+        <% job_listing = Opening.find(application.opening_id) %>
+        Job Listing: <%= job_listing.title %>
+        <br>
+        <% applicant = User.find(application.applicant_id) %>
+        Applicant Name: <%= applicant.name %>
+        <br>
+      </li>
+      <br>
+    <% end %>
+  <% end %>
+</ul>

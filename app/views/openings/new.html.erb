@@ -1,0 +1,17 @@
+<h2>Create New Job Listing</h2>
+
+<form action="<%= openings_url %>" method="post">
+  <%= auth_token_input %>
+
+    <label>Title
+        <input type="text" name="opening[title]" value="">
+    </label>
+
+    <label>Description
+        <input type="text" name="opening[description]" value="">
+    </label>
+
+    <input type="hidden" name="opening[company_id] value="<%= current_user.id %>">
+    <br>
+    <input type="submit" value="Create Job Listing">
+</form>

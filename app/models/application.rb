@@ -21,4 +21,6 @@ class Application < ApplicationRecord
     class_name: 'Opening',
     foreign_key: :opening_id
 
+  has_one :company, through: :opening
+ 
 end

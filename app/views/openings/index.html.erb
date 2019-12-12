@@ -1,18 +1,44 @@
-<h2>Openings</h2>
+<% if current_user.is_employer %>
+  <a href="<%= applications_url %>">View Applicants</a>
+  <br>
+  <a href="<%= new_opening_url %>">Create New Opening</a>
+  <br>
+  <h2>Your company's Openings</h2>
+<% else %>
+  <h2>Current Job Openings</h2>
+<% end %>
 
 <ul>
   <% @openings.each do |opening|%>
     <li>
+      <% if !current_user.is_employer %>
+        <% company = Company.find(opening.company_id) %>
+        Company Name: <%= company.company_name %>
+        <br>
+      <% end %>
+
       Title: <%= opening.title%>
       <br>
+
       Description: <%= opening.description%>
-      <%# TO DO: conditional button to apply if current user has not already applied 
-      and is not an employer %>
+
+      <% if !current_user.is_employer %>
+        <form action="<%= applications_url %>" method="post">
+          <%= auth_token_input %>
+
+          <input type="hidden" name="application[applicant_id]" value="<%= current_user.id %>">
+          <input type="hidden" name="application[opening_id]" value="<%= opening.id %>">
+
+          <% application = Application.find_by({applicant_id: current_user.id, opening_id: opening.id}) %>
+          <% if !application.nil? %>
+            <i>You applied on <%= application.created_at.strftime('%a %d %b %Y') %>.</i>
+          <% else %>
+            <input type="submit" value="Apply Now!">
+          <% end %>
+        </form>
+      <% end %>
 
     </li>
+    <br>
   <% end %>
 </ul>
-
-<% if current_user.is_employer %>
-  <a href="<%= new_opening_url %>">Create New Opening</a>
-<% end %>

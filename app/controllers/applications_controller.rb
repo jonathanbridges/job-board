@@ -1,7 +1,7 @@
 class ApplicationsController < ApplicationController
 
   def create
-    @application = Application.new(opening_params)
+    @application = Application.new(application_params)
     if @application.save
       redirect_to openings_url
     else
@@ -11,8 +11,14 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @applications = Application.where(company_id: current_user.company_id)
+    @applications = Application.all
     render :index
+  end
+
+  private
+
+  def application_params
+    params.require(:application).permit(:applicant_id, :opening_id)
   end
 
 end

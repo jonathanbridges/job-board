@@ -1,14 +1,14 @@
 class OpeningsController < ApplicationController
 
   before_action :require_login!
-
+  
   def create
     @opening = Opening.new(opening_params)
     @opening.company_id = current_user.company_id
     if @opening.save
-      render :index
+      redirect_to openings_url
     else
-      flash.now[:errors] = @link.errors.full_messages
+      flash.now[:errors] = @opening.errors.full_messages
       render :new
     end
   end
