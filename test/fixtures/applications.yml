@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: applications
+#
+#  id           :bigint           not null, primary key
+#  applicant_id :integer          not null
+#  opening_id   :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  applicant_id: 1
+  opening_id: 1
+
+two:
+  applicant_id: 1
+  opening_id: 1

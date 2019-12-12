@@ -11,7 +11,10 @@
   <body>
     <h1>Welcome to JobBoard</h1>
     <% if logged_in? %>
-      Hello, <%= current_user.name %>
+      Hello, <%= current_user.name %>!
+      <% if !current_user.company_id.nil? %>
+        You are a member of the <%= Company.find_by(id: current_user.company_id).company_name %> organization.
+      <% end %>
       <form action="<%= session_url %>" method="post">
         <%= auth_token_input %>
         <input type="hidden" name="_method" value="delete">
