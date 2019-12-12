@@ -10,4 +10,15 @@
 #
 
 class Application < ApplicationRecord
+
+  validates :applicant_id, :opening_id, presence: true
+
+  belongs_to :applicant,
+    class_name: 'User',
+    foreign_key: :applicant_id
+
+  belongs_to :opening,
+    class_name: 'Opening',
+    foreign_key: :opening_id
+
 end

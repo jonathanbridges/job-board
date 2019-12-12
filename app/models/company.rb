@@ -12,4 +12,6 @@ class Company < ApplicationRecord
 
   validates :company_name, presence: true
 
+  has_many :openings
+
 end
