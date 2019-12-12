@@ -37,6 +37,9 @@
             <input type="submit" value="Apply Now!">
           <% end %>
         </form>
+      <% else %>
+        <br>
+        <a href="<%= edit_opening_url(opening.id) %>">Edit Opening</a>
       <% end %>
 
     </li>

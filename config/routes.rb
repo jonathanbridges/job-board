@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :index]
   resource :session, only: [:new, :create, :destroy]
-  resources :openings, only: [:new, :create, :index]
+  resources :openings, only: [:new, :create, :index, :edit, :update]
   resources :companies, only: [:new, :create, :index]
   resources :applications, only: [:create, :index]
 

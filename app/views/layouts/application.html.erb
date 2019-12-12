@@ -15,6 +15,8 @@
       <% if !current_user.company_id.nil? %>
         You are a member of the <%= Company.find_by(id: current_user.company_id).company_name %> organization.
       <% end %>
+      <br>
+      <br>
       <form action="<%= session_url %>" method="post">
         <%= auth_token_input %>
         <input type="hidden" name="_method" value="delete">
@@ -24,9 +26,7 @@
       <a href="<%= new_session_url %>">Sign In</a>
       <a href="<%= new_user_url %>">Sign Up</a>
     <% end %>
-
     <br>
-
     <%= render 'layouts/errors' %>
 
     <%= yield %>

@@ -21,6 +21,20 @@ class OpeningsController < ApplicationController
     render :index
   end
 
+  def edit
+    @opening = Opening.find(params[:id])
+  end
+
+  def update
+    @opening = Opening.find(params[:id])
+    if @opening.update_attributes(opening_params)
+      redirect_to openings_url
+    else
+      flash.now[:errors] = @opening.errors.full_messages
+      render :edit
+    end
+  end
+
   private
 
   def opening_params

@@ -1,0 +1,20 @@
+<a href="<%= openings_url %>">Return to all Openings</a>
+
+<h2>Edit Opening</h2>
+
+<form action="<%= opening_url %>" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="_method" value="patch">
+
+  <label>
+    Title
+    <input type="text" name="opening[title]" value="<%= @opening.title %>">
+  </label>
+
+  <label>
+    URL
+    <input type="text" name="opening[description]" value="<%= @opening.description %>">
+  </label>
+  <br>
+  <input type="submit" value="Update Opening">
+</form>
