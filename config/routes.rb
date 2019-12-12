@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :openings, only: [:new, :create, :index]
   resources :companies, only: [:new, :create, :index]
+  resources :applications, only: [:create, :index]
 
 end
