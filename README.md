@@ -28,7 +28,7 @@ $ bundle exec rails db:setup
 Deployment instructions:
 ```
 $ bundle exec rails server
-$ navigate to http://localhost:3000/#/
+$ navigate to http://localhost:3000/
 ```
 ## Technologies Used
 * Framework: Ruby on Rails (v5.2.3)
